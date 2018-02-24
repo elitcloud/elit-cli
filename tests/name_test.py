@@ -16,20 +16,17 @@
 
 __author__ = "Gary Lai"
 
-import fire
 from elitcli.utils import valid_boilerplate_name
 
 
-class ElitCli(object):
-
-    def new(self, name):
-        """
-        Create a boilerplate for training. "elit new myapp" creates a
-        new boilerplate in ./myapp.
-        :param name: name of boilerplate
-        """
-        boilerplate_name = valid_boilerplate_name(name)
-
-
-if __name__ == '__main__':
-    fire.Fire()
+def test_boilerplate_name():
+    assert valid_boilerplate_name("My App") == "my_app"
+    assert valid_boilerplate_name("My App!") == "my_app"
+    assert valid_boilerplate_name("!My App") == "my_app"
+    assert valid_boilerplate_name("My_App") == "my_app"
+    assert valid_boilerplate_name("My______App") == "my_app"
+    assert valid_boilerplate_name(" !My    App  ") == "my_app"
+    assert valid_boilerplate_name("! My    App  ") == "my_app"
+    assert valid_boilerplate_name("!  My    App  1") == "my_app"
+    assert valid_boilerplate_name("!___  My    App  1") == "my_app"
+    assert valid_boilerplate_name("!___  My  _  App  1") == "my_app"

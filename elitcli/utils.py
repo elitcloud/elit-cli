@@ -16,10 +16,28 @@
 
 __author__ = "Gary Lai"
 
-import fire
-from elitcli import cli
+import unicodedata
+import string
 
 
-class TestFireClass(object):
-    def test_hello(self):
-        assert fire.Fire(cli.hello("world")) == "hello world"
+def valid_boilerplate_name(name, replace=' '):
+    """
+    Convert name from user into a valid python package name
+    :param name: :param name: boilerplate name
+    :param replace: \' \'
+    :return: boilerplate name
+    """
+
+    valid_filename_chars = "_%s" % string.ascii_letters
+
+    name = " ".join(name.split())
+
+    for r in replace:
+        name = name.replace(r, '_')
+
+    name = "_".join(name.split("_"))
+
+    cleaned_filename = unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore').decode()
+    cleaned_filename = ''.join(c for c in cleaned_filename if c in valid_filename_chars).lower()
+
+    return "_".join(list(filter(None, cleaned_filename.split("_"))))
