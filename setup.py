@@ -70,13 +70,13 @@ def get_version_info():
     FULLVERSION = VERSION
     if os.path.exists('.git'):
         GIT_REVISION = git_version()
-    elif os.path.exists('elit-cli/version.py'):
+    elif os.path.exists('elitcli/version.py'):
         # must be a source distribution, use existing version file
         try:
-            from elit.version import git_revision as GIT_REVISION
+            from elitcli.version import git_revision as GIT_REVISION
         except ImportError:
             raise ImportError("Unable to import git_revision. Try removing " \
-                              "elit-cli/version.py and the build directory " \
+                              "elitcli/version.py and the build directory " \
                               "before building.")
     else:
         GIT_REVISION = "Unknown"
@@ -87,7 +87,7 @@ def get_version_info():
     return FULLVERSION, GIT_REVISION
 
 
-def write_version_py(filename='elit-cli/version.py'):
+def write_version_py(filename='elitcli/version.py'):
     cnt = """
 # THIS FILE IS GENERATED FROM SCIPY SETUP.PY
 short_version = '%(version)s'
@@ -114,9 +114,9 @@ def setup_package():
     write_version_py()
 
     metadata = dict(
-        name='elit-cli',
-        url='https://github.com/elitcloud/elit-cli',
-        download_url='https://github.com/elitcloud/elit-cli/tree/master',
+        name='elitcli',
+        url='https://github.com/elitcloud/elitcli',
+        download_url='https://github.com/elitcloud/elitcli/tree/master',
         author='Gary Lai',
         author_email='gary.lai@emory.edu',
         description='The Emory Language Information Toolkit (ELIT).',
