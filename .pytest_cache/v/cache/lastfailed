@@ -1,4 +1,0 @@
-{
-  "tests/name_test.py::test_boilerplate_name[-my_app]": true,
-  "tests/name_test.py::test_boilerplate_name[None-my_app]": true
-}
