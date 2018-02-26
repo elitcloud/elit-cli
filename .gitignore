@@ -457,3 +457,4 @@ paket-files/
 # !tools/packages.config
 /elitcli/version.py
 /.pytest_cache/
+!/bin/

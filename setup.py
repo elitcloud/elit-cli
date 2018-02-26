@@ -131,6 +131,7 @@ def setup_package():
         ],
         include_package_data=True,
         classifiers=[_f for _f in CLASSIFIERS.split('\n') if _f],
+        scripts = ['bin/elit'],
     )
     metadata['version'] = get_version_info()[0]
 
