@@ -52,7 +52,10 @@ def git_version():
         env['LANGUAGE'] = 'C'
         env['LANG'] = 'C'
         env['LC_ALL'] = 'C'
-        out = subprocess.Popen(cmd, stdout=subprocess.PIPE, env=env).communicate()[0]
+        out = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            env=env).communicate()[0]
         return out
 
     try:
@@ -75,8 +78,8 @@ def get_version_info():
         try:
             from elitcli.version import git_revision as GIT_REVISION
         except ImportError:
-            raise ImportError("Unable to import git_revision. Try removing " \
-                              "elitcli/version.py and the build directory " \
+            raise ImportError("Unable to import git_revision. Try removing "
+                              "elitcli/version.py and the build directory "
                               "before building.")
     else:
         GIT_REVISION = "Unknown"
@@ -129,6 +132,7 @@ def setup_package():
         tests_require=[
             'pytest',
         ],
+        include_package_data=True,
         classifiers=[_f for _f in CLASSIFIERS.split('\n') if _f],
     )
     metadata['version'] = get_version_info()[0]
