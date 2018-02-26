@@ -15,8 +15,8 @@
 # ========================================================================
 """
 Usage:
+    elit configure
     elit new <name>
-    elit login
     elit deploy
     elit (-h | --help | --version)
 
@@ -29,25 +29,30 @@ Description:
 
 See 'elit help <command>' for more information on a specific command.
 """
+import os
+
 __author__ = "Gary Lai"
 
 from docopt import docopt
 from elitcli.version import version
+from elitcli.credential import Credential
 from elitcli.boilerplate import Boilerplate
 from elitcli.deploy import Deployment
 
+
 def main():
     args = docopt(__doc__, version=version)
+    credential = Credential()
     if args['new']:
         boilerplate_name = args['<name>']
         boilerplate = Boilerplate(boilerplate_name)
         boilerplate.build()
-    elif args['login']:
-        print('login')
+    elif args['configure']:
+        credential.setup()
     elif args['deploy']:
-        deployment = Deployment()
+        deployment = Deployment(credential)
+        os.chdir(deployment.cwd)
         deployment.deploy()
-
 
 
 if __name__ == '__main__':
