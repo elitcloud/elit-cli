@@ -34,7 +34,7 @@ __author__ = "Gary Lai"
 from docopt import docopt
 from elitcli.version import version
 from elitcli.boilerplate import Boilerplate
-
+from elitcli.deploy import Deployment
 
 def main():
     args = docopt(__doc__, version=version)
@@ -45,7 +45,9 @@ def main():
     elif args['login']:
         print('login')
     elif args['deploy']:
-        print('deploy')
+        deployment = Deployment()
+        deployment.deploy()
+
 
 
 if __name__ == '__main__':

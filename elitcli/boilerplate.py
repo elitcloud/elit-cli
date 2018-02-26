@@ -15,6 +15,7 @@
 # ========================================================================
 
 import os
+import shutil
 import string
 import unicodedata
 import errno
@@ -69,4 +70,8 @@ class Boilerplate(object):
         dest = "{cwd}/{name}".format(cwd=cwd, name=self.name)
         copy_tree(self.template_path, dest)
         os.remove("{dest}/__init__.py".format(dest=dest))
-        os.rmdir("{dest}/__pycache__".format(dest=dest))
+        for root, dirs, files in os.walk(dest):
+            for dir in dirs:
+                if 'pycache' in dir:
+                    path = os.path.join(root, dir)
+                    shutil.rmtree(path, ignore_errors=True)
