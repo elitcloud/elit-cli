@@ -46,8 +46,11 @@ class Boilerplate(object):
 
         name = "_".join(name.split("_"))
 
-        cleaned_filename = unicodedata.normalize('NFKD', name).encode('ASCII', 'ignore').decode()
-        cleaned_filename = ''.join(c for c in cleaned_filename if c in valid_filename_chars).lower()
+        cleaned_filename = unicodedata.normalize(
+            'NFKD', name).encode(
+            'ASCII', 'ignore').decode()
+        cleaned_filename = ''.join(
+            c for c in cleaned_filename if c in valid_filename_chars).lower()
 
         return "_".join(list(filter(None, cleaned_filename.split("_"))))
 
@@ -60,6 +63,10 @@ class Boilerplate(object):
             if e.errno != errno.EEXIST:
                 raise
             else:
-                print('\"{name}\" exists in current directory'.format(name=self.name))
+                print(
+                    '\"{name}\" exists in current directory'.format(
+                        name=self.name))
         dest = "{cwd}/{name}".format(cwd=cwd, name=self.name)
         copy_tree(self.template_path, dest)
+        os.remove("{dest}/__init__.py".format(dest=dest))
+        os.rmdir("{dest}/__pycache__".format(dest=dest))

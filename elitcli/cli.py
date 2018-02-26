@@ -21,8 +21,8 @@ Usage:
     elit (-h | --help | --version)
 
 Options:
-    -h --help     Show this screen.
-    --version     Show version.
+    -h --help       Show this screen.
+    --version       Show version.
 
 Description:
     elitcli is used for accessing resources to ELIT cloud.
@@ -40,13 +40,12 @@ def main():
     args = docopt(__doc__, version=version)
     if args['new']:
         boilerplate_name = args['<name>']
-        boilerplate = Boilerplate(boilerplate_name )
+        boilerplate = Boilerplate(boilerplate_name)
         boilerplate.build()
     elif args['login']:
         print('login')
     elif args['deploy']:
         print('deploy')
-
 
 
 if __name__ == '__main__':
