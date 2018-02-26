@@ -15,23 +15,3 @@
 # ========================================================================
 
 __author__ = "Gary Lai"
-
-import pytest
-from elitcli.boilerplate import Boilerplate
-
-
-@pytest.mark.parametrize("name, expected", [
-    ("My App", "my_app"),
-    ("My App!", "my_app"),
-    ("!My App", "my_app"),
-    ("My_App", "my_app"),
-    ("My______App", "my_app"),
-    (" !My    App  ", "my_app"),
-    ("! My    App  ", "my_app"),
-    ("!  My    App  1", "my_app"),
-    ("!___  My    App  1", "my_app"),
-    ("!___  My  _  App  1", "my_app"),
-    ("!___  My  _  App  1", "my_app"),
-])
-def test_boilerplate_name(name, expected):
-    assert Boilerplate(name).name == expected

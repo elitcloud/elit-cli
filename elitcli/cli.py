@@ -13,23 +13,41 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ========================================================================
+"""
+Usage:
+    elit new <name>
+    elit login
+    elit deploy
+    elit (-h | --help | --version)
 
+Options:
+    -h --help     Show this screen.
+    --version     Show version.
+
+Description:
+    elitcli is used for accessing resources to ELIT cloud.
+
+See 'elit help <command>' for more information on a specific command.
+"""
 __author__ = "Gary Lai"
 
-import fire
-from elitcli.utils import valid_boilerplate_name
+from docopt import docopt
+from elitcli.version import version
+from elitcli.boilerplate import Boilerplate
 
 
-class ElitCli(object):
+def main():
+    args = docopt(__doc__, version=version)
+    if args['new']:
+        boilerplate_name = args['<name>']
+        boilerplate = Boilerplate(boilerplate_name )
+        boilerplate.build()
+    elif args['login']:
+        print('login')
+    elif args['deploy']:
+        print('deploy')
 
-    def new(self, name):
-        """
-        Create a boilerplate for training. "elit new myapp" creates a
-        new boilerplate in ./myapp.
-        :param name: name of boilerplate
-        """
-        boilerplate_name = valid_boilerplate_name(name)
 
 
 if __name__ == '__main__':
-    fire.Fire()
+    main()

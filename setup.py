@@ -123,7 +123,8 @@ def setup_package():
         license='ALv2',
         packages=find_packages(exclude=EXCLUDE_FROM_PACKAGES),
         install_requires=[
-            'fire'
+            'fire',
+            'Jinja2',
         ],
         tests_require=[
             'pytest',
