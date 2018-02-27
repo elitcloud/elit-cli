@@ -7,3 +7,23 @@ This is the command line interface to access resources on ELIT Cloud.
 ```bash
 pip install elitcli
 ```
+
+
+## Usage
+
+```bash
+Usage:
+    elit configure
+    elit new <name>
+    elit deploy
+    elit (-h | --help | --version)
+
+Options:
+    -h --help       Show this screen.
+    --version       Show version.
+
+Description:
+    elitcli is used for accessing resources to ELIT cloud.
+
+See 'elit help <command>' for more information on a specific command.
+```
