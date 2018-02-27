@@ -13,14 +13,22 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ========================================================================
-from os.path import expanduser
+import json
+import os
+import getpass
+from elitcli.config import API_KEY, CONFIG_FILE, CONFIG_PATH
 
 __author__ = "Gary Lai"
 
 
-HOME = expanduser("~")
-CONFIG_PATH = '{home}/.elit'.format(home=HOME)
-CONFIG_FILE = '{config_path}/credentials.json'.format(config_path=CONFIG_PATH)
-APP_ENTRY = "app.py"
-APP_ATTR = ['decode', 'load_model', 'save_model', 'train']
-API_KEY = "api_key"
+class Configure(object):
+
+    @staticmethod
+    def setup():
+        d = {}
+        print("To get your api_key, please visit https://elit.cloud/dashboard/credentials. ")
+        api_key = getpass.getpass(prompt="api_key: ")
+        d[API_KEY] = api_key
+        os.makedirs(CONFIG_PATH, exist_ok=True)
+        with open(CONFIG_FILE, 'w') as f:
+            json.dump(d, f, indent=4)

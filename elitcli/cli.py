@@ -36,20 +36,22 @@ __author__ = "Gary Lai"
 from docopt import docopt
 from elitcli.version import version
 from elitcli.credential import Credential
+from elitcli.configure import Configure
 from elitcli.boilerplate import Boilerplate
 from elitcli.deploy import Deployment
 
 
 def main():
     args = docopt(__doc__, version=version)
-    credential = Credential()
     if args['new']:
         boilerplate_name = args['<name>']
         boilerplate = Boilerplate(boilerplate_name)
         boilerplate.build()
     elif args['configure']:
-        credential.setup()
+        confiture = Configure()
+        confiture.setup()
     elif args['deploy']:
+        credential = Credential()
         deployment = Deployment(credential)
         os.chdir(deployment.cwd)
         deployment.deploy()

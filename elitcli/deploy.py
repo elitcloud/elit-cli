@@ -13,13 +13,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # ========================================================================
-
-__author__ = "Gary Lai"
-
 import sys
 import errno
 import os
 from elitcli.config import *
+
+__author__ = "Gary Lai"
 
 
 class Deployment(object):
